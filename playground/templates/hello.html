@@ -5,10 +5,15 @@
         {% else %}
         <h1>Hello!</h1>
         {% endif %}
+        {% if orders %}
         <ul>
-            {% for product in products %}
-            <li></li>
+            {% for order in orders %}
+            <li>{{ order.id }} | {{ order.customer.first_name }} {{order.customer.last_name}}</li>
             {% endfor %}
         </ul>
+        {% endif %}
+        {% if aggregate %}
+        <p>{{ aggregate }}</p>
+        {% endif %}
     </body>
 </html>
