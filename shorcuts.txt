@@ -1,0 +1,93 @@
+3:19:19 | Working with Expression
+-> building expression wrapper 
+-> ExpressionWrapper(expression, outputfield=object())
+-> store the ExpressionWrapper and call it
+
+
+3:22 | Querying Generic Relationships
+-> using content type
+-> refer to the django_content_type table because its store all the conteny_type created with its app label
+-> just import all related models
+-> ContentType object manager has a unique method of get_for_model() which easily get the pass object
+-> it return the row of the model.
+
+3:28 | Custom Manager 
+-> By creating a corresponding Manager in the models of the object you can easily implement object related custom method. Like the content_type can be created as the objects of the TaggedItem.
+
+3:30 | Understanding QuerySet Cache
+-> when django evaluate the query it stores in the query cache
+
+3:33 | Creating Objects
+-> create an instane of the object
+-> add values then use save()
+-> shorthand using create() in objects manager
+
+3:37 | Updating Objects
+-> get the object first, by creating an instance of an object and passing the corresponding properties to identify the specific object instance. [overwrite]
+-> the best practice is to get first the object by using the objects manager
+-> you can use the update() from objects manager as well
+
+3:41 | Deleting Objects
+-> you can delete by instantiating an object and specify the properties
+-> getting the object by using the manager
+-> in both cases, you must use the delete() after.
+
+3:42 | Transactions
+-> import from django.db the transaction
+-> it has an atomic(), you can use as decorator (@) or as context manager
+-> as decorator use it above a function - @transaction.atommic()
+-> as context manager use it with - with transaction.atomic()
+
+3:46 | Executing Raw SQL Queries
+-> every objects manager has raw() and pass a query
+-> Only use when dealing complex annotation and queries. 
+-> Using cursor on the otherhand has full control in database
+-> You can use it like this:
+-> import connection from django.db
+-> use cursor() by connection.cursor()
+-> ..cursor.execute('SELECT * FROM store_product')
+-> ..cursor.close() // this is needed to be close every call
+-> you can use with in closing:
+-> with connection.cursor() as cursor:
+-> cursor.execute('QUERY HERE')
+-> you can also use cursor.callproc() procedures 
+
+3:51 | Admin Site
+-> createsuperuser 
+-> migrate
+-> changepassword {user}
+| Change Title |
+import admin first from django.contrib
+admin.site.site_header - to change site_header
+admin.site.index_title - to change site title
+
+3:55 | Registering Models
+-> import models in admin.py
+
+3:59 | Customizing the List Page
+-> create a class ObjectAdmin passing (admin.ModelAdmin)
+-> add list valuse in list_display = [''] ;
+-> add list_editable with list values
+-> list_per_page = index_title
+-> refer to django ModelAdmin options
+-> also use admin.register decorator
+-> can also add ordering in the class admin
+
+4:03 | Adding Computed Columns
+-> create method inside a ObjectAdmin class passing the instance of object then adding custom validation
+-> add the define function in the list_display
+-> you can add sorting by using a decorator of admin.display() passing the ordering with list values
+
+4:05 | Selecting Related Objects
+-> adding column with related fields.
+-> by default it return a the string representation of the object def in __str__()
+-> or you can create a method to be used in the list_display
+-> to preload the related field by using list_select_related with value of list of the fields.
+
+4:09 | Overriding the Base QuerySet
+-> in a situation you want to someting in the display list outside the give attributes of the objects,
+-> you can use the default get_queryset() fro the admin.ModelAdmin and override it with the custom ordering
+-> def get_queryset(self, request) and inherit the attributes with super()
+-> now you can use annotate() to populate data
+
+4:12 | Providing Other Links to Other Pages
