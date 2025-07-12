@@ -91,3 +91,10 @@ admin.site.index_title - to change site title
 -> now you can use annotate() to populate data
 
 4:12 | Providing Other Links to Other Pages
+-> to provide link we need to user format_html from django.utils.html to create html anchor
+-> then we can use reverse by specifying path and provide query to indentify the corresponding objects
+
+4:17 | Adding Search to the List Page
+-> we can search field in the admin page by adding search_field attribute to the admin objects with list values
+-> search_fields = ['first_name__istartswith', 'last_name__istartswith']
+-> we need to use field lookups (__lte, **)
