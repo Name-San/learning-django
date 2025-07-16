@@ -145,4 +145,10 @@ admin.site.index_title - to change site title
 -> make sure the the corresponding attribute search_field is added on the field in want to autocomplete.
 
 4:42 | Extending Pluggable Apps
--> 
+-> we've focused on making our modules independent, so it a bad practice to directly import the modules. 
+-> rather we can create a pluggable Apps or custom app that serves a bridge between these modules.
+-> to do it, we create a new app then import the admin or the models, and create class the inherit these imports.
+-> But make sure your have to unregister app in the admin.site if you are working with admin.
+-> the other modules registered it and we imported the class to inherit its attribute in order to integrate with the other modules,
+-> it has to be registered again, with the adjustments. 
+-> don't forget to add the custom app in the install_app settings.
