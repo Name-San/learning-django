@@ -131,8 +131,18 @@ admin.site.index_title - to change site title
 4:36 | Editing Children using Inlines
 -> so inorder to add a children related form.
 -> it require define a class inherit the admin object with TabularInline or StackInline:
+-> add model attribute with the value of the intended model
 -> and in the parent, add an attribute inlines with list value of children defined class.
 -> the children inherit as well the ModelAdmin from parent and can add admin attributes
 
 4:38 | Using Generic Relationships
-->
+-> from django.contrib.contenttypes.admin import GenericTabularInline
+-> from another app models, first declare the class ModelAdmin on it own admin.py
+-> back to the modeladmin that want to use it as inline, declare inline with the define inline class.
+-> the define inline class will inherit the Generic type of inline.
+-> add the model attribute in the class with the value of intented related model, like TaggedItem for Tag,
+-> same with other inline class you can inherite the modelAdmin declaring the inlines, add can use like autocomplete_fields,
+-> make sure the the corresponding attribute search_field is added on the field in want to autocomplete.
+
+4:42 | Extending Pluggable Apps
+-> 
