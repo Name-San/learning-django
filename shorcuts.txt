@@ -98,3 +98,32 @@ admin.site.index_title - to change site title
 -> we can search field in the admin page by adding search_field attribute to the admin objects with list values
 -> search_fields = ['first_name__istartswith', 'last_name__istartswith']
 -> we need to use field lookups (__lte, **)
+
+4:18 | Adding Filtering List Page
+-> use list_filter = [''], for adding default filters, passing the column of the database
+-> for custom filter, must create a class inheriting from admin.SimpleFilterList
+-> then add title based on the filter name
+-> then add parameter_name which is the actual arguments added in the url like db Columns
+-> define lookups which return list of tuples for filter selection
+-> define queryset, test it self using value() then filter the queryset argument.
+-> lastly, add the class in the list_filter values
+
+4:23 | Creating Custom Actions
+-> In create a custom action from drop menu in page, first define the related function.
+-> pass 3 arguments: self, request, queryset
+-> modify the necessary queryset
+-> then use built in message_user in every model.ModelAdmin using self.message_user()
+-> it accept 3 arguments, which is request, the message can be string, then from the django.contrib messages for defining its types
+
+4:26 | Customizing Forms
+-> can be refer to admin.ModelAdmin options in django site
+-> fields = [] for selected fields want
+-> exclude - opposite to fields
+-> readonly_fields = [] - make the form read Only
+-> prepopulated_fields = {key: list} for popolutaing forms usually in slug
+-> autocomplete_fields = use search from the reference model.
+
+4:32 | Adding Data Visualazation
+-> Admin form already have the default validation
+-> so in order to modify this, the define models should be adjusted
+-> like, setting null, blank, and using validators
