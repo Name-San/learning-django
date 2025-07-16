@@ -123,7 +123,16 @@ admin.site.index_title - to change site title
 -> prepopulated_fields = {key: list} for popolutaing forms usually in slug
 -> autocomplete_fields = use search from the reference model.
 
-4:32 | Adding Data Visualazation
+4:32 | Adding Data Validation
 -> Admin form already have the default validation
 -> so in order to modify this, the define models should be adjusted
 -> like, setting null, blank, and using validators
+
+4:36 | Editing Children using Inlines
+-> so inorder to add a children related form.
+-> it require define a class inherit the admin object with TabularInline or StackInline:
+-> and in the parent, add an attribute inlines with list value of children defined class.
+-> the children inherit as well the ModelAdmin from parent and can add admin attributes
+
+4:38 | Using Generic Relationships
+->
