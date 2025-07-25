@@ -70,4 +70,12 @@
 - used delete()
 
 1:17 | Advance API Concepts
-- import APIView
+- import APIView from Views
+- add corresponding method on each httpmethod you want to use.  
+
+1:22 | Mixins
+
+1:26 | Generic Views
+- import from generic in rest Framework
+
+1:33 | Customizing Views

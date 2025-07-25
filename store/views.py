@@ -2,25 +2,20 @@ from django.shortcuts import get_object_or_404
 from django.db.models import Count
 from rest_framework import status
 from rest_framework.decorators import api_view
+from rest_framework.generics import ListCreateAPIView
+from rest_framework.mixins import ListModelMixin
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .models import Product, Collection
 from .serializers import ProductSerializer, CollectionSerializer
 
 
-class ProductList(APIView):
+class ProductList(ListCreateAPIView):
+    queryset = Product.objects.select_related('collection').all()
+    serializer_class = ProductSerializer
 
-    def get(self, request):
-        products = Product.objects.select_related('collection').all()
-        serializer = ProductSerializer(products, many=True, context={'request': request})
-        return Response(serializer.data, status=status.HTTP_200_OK)
-    
-    def post(self, request):
-        serializer = ProductSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
-    
+    def get_serializer_context(self):
+        return {'request': self.request}
 
 class ProductDetail(APIView):
 
@@ -46,17 +41,9 @@ class ProductDetail(APIView):
         product.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-@api_view(['GET', 'POST'])
-def collection_list(request):
-    if request.method == 'GET':
-        collection = Collection.objects.annotate(products_count=Count('products'))
-        serializer = CollectionSerializer(collection, many=True)
-        return Response(serializer.data)
-    elif request.method == 'POST':
-        serializer = CollectionSerializer(data=request.data)
-        if serializer.is_valid(raise_exception=True):
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+class CollectionList(ListCreateAPIView):
+    queryset = Collection.objects.annotate(products_count=Count('products')).all()
+    serializer_class = CollectionSerializer
             
 @api_view(['GET', 'PUT', 'DELETE'])
 def collection_detail(request, pk):
