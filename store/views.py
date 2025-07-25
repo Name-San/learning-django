@@ -7,7 +7,7 @@ from rest_framework.mixins import ListModelMixin
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
-from .models import Product, Collection
+from .models import Product, Collection, OrderItem
 from .serializers import ProductSerializer, CollectionSerializer
 
 
@@ -17,27 +17,23 @@ class ProductViewSet(ModelViewSet):
 
     def get_serializer_context(self):
         return {'request': self.request}
-
-    def delete(self, request, pk):
-        product = get_object_or_404(Product, pk=pk)
-        if product.orderitem_set.count() > 0:
+    
+    def destroy(self, request, *args, **kwargs):
+        if OrderItem.objects.filter(product_id=kwargs.get('pk')).count() > 0:
             return Response(
                 {"error": "Item cannot be deleted because it is associated in an order item"},
                 status=status.HTTP_405_METHOD_NOT_ALLOWED
             )
-        product.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return super().destroy(request, *args, **kwargs)
 
 class CollectionViewSet(ModelViewSet):
     queryset = Collection.objects.annotate(products_count=Count('products')).all().order_by('pk')
     serializer_class = CollectionSerializer
-    
-    def delete(self, request, pk):
-        collection = get_object_or_404(Collection, pk=pk)
-        if collection.products.count() > 0:
+
+    def destroy(self, request, *args, **kwargs):
+        if Product.objects.filter(collection_id=kwargs.get('pk')).count() > 0:
             return Response(
                 {"error": "Collection contains product and cannot be deleted."},
                 status=status.HTTP_405_METHOD_NOT_ALLOWED
             )
-        collection.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return super().destroy(request, *args, **kwargs)
