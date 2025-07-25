@@ -12,7 +12,7 @@ class Collection(models.Model):
         return self.title
     
     class Meta:
-        ordering = ['title']
+        ordering = ['pk']
 
 # Create your models here.
 class Product(models.Model):
@@ -22,14 +22,14 @@ class Product(models.Model):
     unit_price = models.DecimalField(max_digits=6, decimal_places=2,validators=[MinValueValidator(1)])
     inventory = models.IntegerField(validators=[MinValueValidator(0)])
     last_update = models.DateField(auto_now=True)
-    collection = models.ForeignKey(Collection, on_delete=models.PROTECT)
+    collection = models.ForeignKey(Collection, on_delete=models.PROTECT, related_name='products')
     promotion = models.ManyToManyField(Promotion, blank=True)
 
     def __str__(self):
         return self.title
 
     class Meta:
-        ordering = ['title']
+        ordering = ['pk']
 
 class Customer(models.Model):
     MEMBERSHIP_BRONZE = 'B'

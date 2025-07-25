@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.db.models import Q, F, Count, Max, Min, Avg, Value, Func
 from django.db.models.functions import Concat
 from django.contrib.contenttypes.models import ContentType
-from store.models import Product, OrderItem, Order, Customer
+from store.models import Product, OrderItem, Order, Customer, Collection
 from tags.models import TaggedItem
 
 # Create your views here.
@@ -19,6 +19,13 @@ def say_hello(request):
 
     orders = False#Order.objects.select_related('customer').prefetch_related('orderitem_set__product').order_by('-placed_at')[:5] 
     result = False#Product.objects.aggregate(avg_price=Avg('unit_price'), max_price=Max('unit_price'), min_price=Min('unit_price'))
+    queryset = Collection.objects.annotate(products_count=Count('products'))
+    list(queryset)
+    context =  {
+        'name': 'Eman', 
+        'orders': orders, 
+        'aggregate': result,
 
+        }
 
-    return render(request, 'hello.html', {'name': 'Eman', 'orders': orders, 'aggregate': result})
+    return render(request, 'hello.html',)

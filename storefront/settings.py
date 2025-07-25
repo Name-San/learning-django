@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'store',
     'store_custom',
     'tags',
-    'likes'
+    'likes',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -88,7 +89,7 @@ WSGI_APPLICATION = 'storefront.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'storefront',
+        'NAME': 'storefront2',
         'HOST': 'localhost',
         'PORT': '5432',
         'USER': 'postgres',
@@ -137,3 +138,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+    'COERCE_DECIMAL_TO_STRING': False
+}
