@@ -79,3 +79,4 @@
 - import from generic in rest Framework
 
 1:33 | Customizing Views
+- 

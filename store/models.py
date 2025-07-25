@@ -10,9 +10,6 @@ class Collection(models.Model):
 
     def __str__(self):
         return self.title
-    
-    class Meta:
-        ordering = ['pk']
 
 # Create your models here.
 class Product(models.Model):
