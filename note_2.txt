@@ -86,3 +86,6 @@
 - You can import the ModelViewset from the rest_framework viewset
 - in inherite the 4 mixins and in that way it works exact the same with other APIView.
 - The difference is, now you're combining the related function or api in related to certain database model.
+
+1:42 | Router
+-
