@@ -96,3 +96,14 @@
 1:52 | Building the Reviews API 
 
 1:56 | Nested Routers
+- used the drf-nested-routers package
+- import routers from rest_framework_nested
+- since the routers have already DefaultRouter and SimpleRouter, we will use those for declaring our router
+- instantiate NestedRouter, add necessary arguments, then register a new router as nested with it.
+
+2:06 | Filtering
+- to filter the list from api, we have to modify the url by adding parameters
+- to access parameters in the url, we have to use the self.reques.query_params
+- modify the queryset to return the correct query based on the passed parameter
+
+2:11 

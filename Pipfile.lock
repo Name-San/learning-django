@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "c8aecacd56a137de2ccf22d83520f515f1502aa4bdaa56435a73a32d32f7092b"
+            "sha256": "66390043f0d4005be34c6dbf7f3c76d25312a73e41bb4fcf55402851f7eed855"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -50,6 +50,15 @@
             "index": "pypi",
             "markers": "python_version >= '3.9'",
             "version": "==3.16.0"
+        },
+        "drf-nested-routers": {
+            "hashes": [
+                "sha256:74dbdceeae2a32f8668ba0df8e3eeabeb9b1c64d2621d914901ae653e4e3bcff",
+                "sha256:aa70923b716dc47cd93b8129b06be6c15706b405cf5f718f59cb8eed01de59cc"
+            ],
+            "index": "pypi",
+            "markers": "python_version >= '3.8'",
+            "version": "==0.94.2"
         },
         "psycopg2": {
             "hashes": [
