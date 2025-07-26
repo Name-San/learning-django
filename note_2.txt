@@ -120,3 +120,8 @@
 - we can user searching filter by importing it from rest_framework.filter
 - include it the filter_backends
 - then add search_fields attribute with array values
+
+2:20 | Sorting
+- same with searching import OrderingFilter in the same module, then
+- add ordering_fields with array values
+
