@@ -125,3 +125,8 @@
 - same with searching import OrderingFilter in the same module, then
 - add ordering_fields with array values
 
+2:21 | Pagination
+- first import pagenumberpagination from rest_framework.Pagination
+- then add pagination_class attribute equal to the pagenumber pagination_class
+- to add pagination globally, we can it in settings.py with DEFAULT_PAGINATION_CLASS, then PAGE_SIZE.
+- we can also create a custom class to specifically add the page_size to the target viewset only
