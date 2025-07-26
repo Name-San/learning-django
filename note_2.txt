@@ -134,3 +134,5 @@
 2:27 | Buiding Shopping Cart API
 
 2:39 | Creating a Cart
+
+2:44 | Getting a Cart
