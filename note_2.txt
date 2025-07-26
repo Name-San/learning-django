@@ -114,4 +114,9 @@
 - define filterset_fields with array values, or
 - filerset_class by creating a class inheriting the FilterSet from the same location
 - and Meta method, define the target model and fields with a dictionary values, data field as the key, and value as the expression in an array.
-- now you no longer need the get_queryset method
+- now you no longer need the get_queryset method_name
+
+2:17 | Searching 
+- we can user searching filter by importing it from rest_framework.filter
+- include it the filter_backends
+- then add search_fields attribute with array values
