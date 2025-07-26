@@ -130,3 +130,7 @@
 - then add pagination_class attribute equal to the pagenumber pagination_class
 - to add pagination globally, we can it in settings.py with DEFAULT_PAGINATION_CLASS, then PAGE_SIZE.
 - we can also create a custom class to specifically add the page_size to the target viewset only
+
+2:27 | Buiding Shopping Cart API
+
+2:39 | Creating a Cart
