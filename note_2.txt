@@ -106,4 +106,12 @@
 - to access parameters in the url, we have to use the self.reques.query_params
 - modify the queryset to return the correct query based on the passed parameter
 
-2:11 
+2:11 | Generic Filtering
+- instead of manually overriding the get_queryset and define your filters, there is a package where you can use to easily filter the queryset based on the url
+- django-filter
+- from django_filter.rest_framework import DjangoFilterBackend
+- inside the viewset, define the filter_backends in array with the import
+- define filterset_fields with array values, or
+- filerset_class by creating a class inheriting the FilterSet from the same location
+- and Meta method, define the target model and fields with a dictionary values, data field as the key, and value as the expression in an array.
+- now you no longer need the get_queryset method
