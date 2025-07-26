@@ -88,4 +88,11 @@
 - The difference is, now you're combining the related function or api in related to certain database model.
 
 1:42 | Router
--
+- import router from rest_framework, can be simple router or default router
+- instantiate then register with prefix and the model viewset
+- access through router.urls
+- add to urlpatterns
+
+1:52 | Building the Reviews API 
+
+1:56 | Nested Routers
