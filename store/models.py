@@ -19,7 +19,7 @@ class Product(models.Model):
     description = models.TextField(null=True, blank=True)
     unit_price = models.DecimalField(max_digits=6, decimal_places=2,validators=[MinValueValidator(1)])
     inventory = models.IntegerField(validators=[MinValueValidator(0)])
-    last_update = models.DateField(auto_now=True)
+    last_update = models.DateField(auto_now=True)   
     collection = models.ForeignKey(Collection, on_delete=models.PROTECT, related_name='products')
     promotion = models.ManyToManyField(Promotion, blank=True)
 
@@ -88,7 +88,7 @@ class Cart(models.Model):
 class CartItem(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name='items')
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    quantity = models.PositiveSmallIntegerField()
+    quantity = models.PositiveSmallIntegerField(validators=[MinValueValidator(1)])
 
     class Meta:
         unique_together = [['cart', 'product']]

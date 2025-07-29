@@ -26,9 +26,14 @@ class ProductSerializer(serializers.ModelSerializer):
 
     def calculate_tax(self, product: Product):
         return product.unit_price * Decimal(1.1)
+    
+class ProductCartItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Product
+        fields = ['id', 'title', 'unit_price']
 
 class CartItemSerializer(serializers.ModelSerializer):
-    product = ProductSerializer()
+    product = ProductCartItemSerializer()
     total_price = serializers.SerializerMethodField()
 
     class Meta:
@@ -37,7 +42,29 @@ class CartItemSerializer(serializers.ModelSerializer):
 
     def get_total_price(self, item: CartItem):
         return item.product.unit_price * item.quantity
+    
+class AddCartItemSerializer(serializers.ModelSerializer):
 
+    product_id = serializers.IntegerField()
+
+    def save(self, **kwargs):
+        product_id = self.validated_data.get('product_id')
+        quantity = self.validated_data.get('quantity')
+        cart_id = self.context.get('cart_id')
+
+        try:
+            cart_item = CartItem.objects.get(cart_id=cart_id, product_id=product_id)
+            cart_item.quantity += quantity
+            cart_item.save()
+            self.instance = cart_item
+        except CartItem.DoesNotExist:
+            self.instance = CartItem.objects.create(cart_id=cart_id, **self.validated_data)
+
+        return self.instance
+
+    class Meta:
+        model = CartItem
+        fields = ['id', 'product_id', 'quantity']
 
 class CartSerializer(serializers.ModelSerializer):
     items = CartItemSerializer(many=True, read_only=True)
