@@ -139,6 +139,8 @@
 
 2:53 | Deleting a Cart
 
-2:55 | Getting Cart Items
+2:55 | Creating Cart Items
 
 3:00 | Adding Cart Item
+
+3:12 | Updating Cart Item
