@@ -142,5 +142,13 @@
 2:55 | Creating Cart Items
 
 3:00 | Adding Cart Item
+- 
 
 3:12 | Updating Cart Item
+- http_method_names = ['get', 'post', 'patch', 'delete']
+
+3:14 | Deleting Cart Items
+
+3:15 | Djnango Authentication System
+
+3:21 | Extending the User Model
