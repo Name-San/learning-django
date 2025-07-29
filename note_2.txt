@@ -152,3 +152,7 @@
 3:15 | Djnango Authentication System
 
 3:21 | Extending the User Model
+
+3:32 | Creating User Profile
+
+3:39 | Groups and Permission
