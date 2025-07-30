@@ -156,3 +156,7 @@
 3:32 | Creating User Profile
 
 3:39 | Groups and Permission
+
+3:42 | Creating Custom Permissions
+
+3:44 | Securing APIs
