@@ -160,3 +160,6 @@
 3:42 | Creating Custom Permissions
 
 3:44 | Securing APIs
+
+3:46 | Adding Authentication Endpoints
+- using Djoser as the API Layer and JWT as the auth engine
