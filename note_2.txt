@@ -163,3 +163,13 @@
 
 3:46 | Adding Authentication Endpoints
 - using Djoser as the API Layer and JWT as the auth engine
+
+3:52 | Registering Users
+- as much as possible ke separate endpoints base on their functionalities,
+- in that way, it is manageable and reusable
+- inherit the serializer from djoser, to create a customize fields
+
+4:02 | Building the Profile API
+- build api for customer 
+
+4:07 | Logging In
