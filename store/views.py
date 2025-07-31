@@ -10,7 +10,7 @@ from rest_framework.permissions import IsAdminUser, IsAuthenticated, DjangoModel
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet, GenericViewSet
-from .permissions import CustomDjangoModelPermission, IsAdminOrReadOnly
+from .permissions import CustomDjangoModelPermission, IsAdminOrReadOnly, ViewCustomerHistoryPermission
 from .models import CartItem, Customer, Product, Collection, OrderItem, Review, Cart
 from .serializers import CartItemSerializer, CustomerSerializer, ProductSerializer, CollectionSerializer, ReviewSerializer, CartSerializer, AddCartItemSerializer, UpdateCartItemSerializer
 from .filters import ProductFilterSet
@@ -90,6 +90,10 @@ class CustomerViewset(ModelViewSet):
     queryset = Customer.objects.all()
     serializer_class = CustomerSerializer
     permission_classes = [IsAdminUser]
+
+    @action(detail=True, permission_classes=[ViewCustomerHistoryPermission])
+    def history(self, request, pk):
+        return Response('ok')
 
     @action(detail=False, methods=['GET', 'PUT'], permission_classes=[IsAuthenticated])
     def me(self, request):
