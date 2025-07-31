@@ -84,7 +84,7 @@ class CartSerializer(serializers.ModelSerializer):
         return sum(item.product.unit_price * item.quantity for item in cart.items.all())
 
 class CustomerSerializer(serializers.ModelSerializer):
-    user_id = serializers.IntegerField()
+    user_id = serializers.IntegerField() 
 
     class Meta:
         model = Customer
