@@ -173,3 +173,6 @@
 - build api for customer 
 
 4:07 | Logging In
+
+4:21 | Current User Profile
+- define actions is a viewset
