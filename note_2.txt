@@ -185,3 +185,9 @@
 - you can add global permission in settings, using the DEFAULT_PERMISSION_CLASSES
 
 4:33 | Custom Permissions
+- user the Base permission from the rest_framework
+- override the has_permission method to return your specific boolean value
+- you can also user DjangoModelPermission in which it uses the permission built in the admin panel and apply this permission
+- in the api
+
+4:44 | Applying Custom Permissons 
