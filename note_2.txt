@@ -176,3 +176,12 @@
 
 4:21 | Current User Profile
 - define actions is a viewset
+
+4:28 | Applying permissions
+- using the rest_framework.permissions, you add permissions on the viewset by using the attribute: permission_classes wath value list,
+- you also defin an attribute of permission_classes in the action decorator.
+- In complex permissions, you can used get permission method to return permission based on the request method.
+- make sure to return a list of the permission class instance
+- you can add global permission in settings, using the DEFAULT_PERMISSION_CLASSES
+
+4:33 | Custom Permissions
