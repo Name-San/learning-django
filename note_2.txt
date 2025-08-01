@@ -58,7 +58,7 @@
 
 55:09 | Data Validation
 - serializer.is_valid(raise_exception=True)
-- override validation in the model class by defining a validaterd method passing self and data - dictionary type, then return error or the data.
+- override validation in the model class by defining a validated method passing self and data - dictionary type, then return error or the data.
 
 1:00 | Saving Objects
 - use the .save() method,
@@ -190,4 +190,13 @@
 - you can also user DjangoModelPermission in which it uses the permission built in the admin panel and apply this permission
 - in the api
 
-4:44 | Applying Custom Permissons 
+4:44 | Applying Custom Permissions 
+
+4:49 | Designing Order API
+- CQS - Command Query Separation
+
+5:03 | Creating Order
+- in the base serializer, we override save() to create an Order base on ther user id from the viewset passed through context
+- we can access request() from the serializer, but in the viewset only.
+- so we identify the customer user the request.user.id and create an order based on these customer
+
