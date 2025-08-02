@@ -12,7 +12,7 @@ from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet, GenericViewSet
 from .permissions import CustomDjangoModelPermission, IsAdminOrReadOnly, ViewCustomerHistoryPermission
 from .models import CartItem, Customer, Order, Product, Collection, OrderItem, Review, Cart
-from .serializers import CartItemSerializer, CreateOrderSerializer, CustomerSerializer, OrderSerializer, ProductSerializer, CollectionSerializer, ReviewSerializer, CartSerializer, AddCartItemSerializer, UpdateCartItemSerializer
+from .serializers import CartItemSerializer, CreateOrderSerializer, CustomerSerializer, OrderSerializer, ProductSerializer, CollectionSerializer, ReviewSerializer, CartSerializer, AddCartItemSerializer, UpdateCartItemSerializer, UpdateOrderSerializer
 from .filters import ProductFilterSet
 from .pagination import DefaultPagination
 from .viewsets import CustomCartModelViewSet
@@ -107,15 +107,27 @@ class CustomerViewset(ModelViewSet):
             return Response(serializer.data)
 
 class OrderViewSet(ModelViewSet):
-    permission_classes = [IsAuthenticated]
+    http_method_names = ['get', 'post', 'patch', 'delete', 'head', 'options']
+    
+    def get_permissions(self):
+        if self.request.method in ['PATCH', "DELETE"]:
+            return [IsAdminUser()]
+        return [IsAuthenticated()]
+
+    def create(self, request, *args, **kwargs):
+        serializer = CreateOrderSerializer(data=request.data, context = {'user_id': self.request.user.id})
+        serializer.is_valid(raise_exception=True)
+        order = serializer.save()
+        serializer = OrderSerializer(order)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
 
     def get_serializer_class(self):
         if self.request.method == 'POST':
             return CreateOrderSerializer
+        elif self.request.method == 'PATCH':
+            return UpdateOrderSerializer    
         return OrderSerializer
-
-    def get_serializer_context(self):
-        return  {'user_id': self.request.user.id}
 
     def get_queryset(self):
         user = self.request.user
