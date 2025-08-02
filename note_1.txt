@@ -31,8 +31,8 @@
 -> you can delete by instantiating an object and specify the properties
 -> getting the object by using the manager
 -> in both cases, you must use the delete() after.
-
-3:42 | Transactions
+ 
+3:42 | Transactions | keyword: group database query
 -> import from django.db the transaction
 -> it has an atomic(), you can use as decorator (@) or as context manager
 -> as decorator use it above a function - @transaction.atommic()

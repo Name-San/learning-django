@@ -200,3 +200,8 @@
 - we can access request() from the serializer, but in the viewset only.
 - so we identify the customer user the request.user.id and create an order based on these customer
 
+5:08 | Creating Order Items
+- we modify the save() and add in that method we creat cart items   
+- filter the cart item query to return only the corresponding cart_id which git from the validated_data of the serializer
+- using a list comphrehension and bulk_create we manage to create items for the order
+

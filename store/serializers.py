@@ -1,4 +1,5 @@
 from decimal import Decimal
+from django.db import transaction
 from rest_framework import serializers
 from .models import Cart, CartItem, Customer, Order, OrderItem, Product, Collection, Review
 
@@ -105,8 +106,34 @@ class OrderSerializer(serializers.ModelSerializer):
         fields = ['id', 'customer_id', 'payment_status', 'placed_at', 'items']
 
 class CreateOrderSerializer(serializers.Serializer):
-    cartId = serializers.UUIDField()
+    cart_id = serializers.UUIDField()
 
+    def validate_cart_id(self, value):
+        if not Cart.objects.filter(pk=value).exists():
+            raise serializers.ValidationError("No cart was found.")
+        elif CartItem.objects.filter(cart_id=value).count() == 0:
+            raise serializers.ValidationError("The cart is empty.")
+        return value
+    
     def save(self, **kwargs):
-        (customer, created) = Customer.objects.get_or_create(user_id=self.context.get('user_id'))
-        Order.objects.create(customer=customer)
+        with transaction.atomic():
+            user_id = self.context.get('user_id')
+            cart_id = self.validated_data.get('cart_id')
+
+            (customer, created) = Customer.objects.get_or_create(user_id=user_id)
+            order = Order.objects.create(customer=customer)
+
+            cart_items = CartItem.objects.select_related('product').filter(cart_id=cart_id)
+
+            order_items = [
+                OrderItem(
+                    order=order,
+                    product=item.product,
+                    quantity=item.quantity,
+                    unit_price=item.product.unit_price
+                ) for item in cart_items
+            ]
+
+            OrderItem.objects.bulk_create(order_items)
+
+            Cart.objects.filter(pk=cart_id).delete()
