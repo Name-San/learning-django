@@ -15,5 +15,46 @@
         {% if aggregate %}
         <p>{{ aggregate }}</p>
         {% endif %}
+        <div id="TokenForm">
+            <form method="post" id="tokenForm">
+                <label for="username">Username</label>
+                <input id="username" type="text"><br>
+                <label for="password">Password</label>
+                <input id="password" type="password"><br>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
     </body>
+    <script type="text/javascript">
+        const divToken = document.getElementById('tokenForm');
+
+        divToken.addEventListener('submit', async (e) => {
+            e.preventDefault()
+
+            const username = document.getElementById('username').value
+            const password = document.getElementById('password').value
+
+            const response = await fetch('http://127.0.0.1:8000/auth/jwt/create', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                    },
+                body: JSON.stringify({
+                    'username': username,
+                    'password': password
+                }),
+            })
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error || 'Unknown Error');
+            }
+
+            const data = await response.json();
+            localStorage.setItem('refreshToken', data.refresh)
+            localStorage.setItem('accessToken', data.access)
+            alert(data)
+        })
+
+    </script>
 </html>
