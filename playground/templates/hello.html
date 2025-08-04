@@ -24,9 +24,13 @@
                 <button type="submit">Submit</button>
             </form>
         </div>
+        <div>
+            <button id="btnToken">Click Me</button>
+        </div>
     </body>
     <script type="text/javascript">
         const divToken = document.getElementById('tokenForm');
+        const btnToken = document.getElementById('btnToken')
 
         divToken.addEventListener('submit', async (e) => {
             e.preventDefault()
@@ -34,7 +38,7 @@
             const username = document.getElementById('username').value
             const password = document.getElementById('password').value
 
-            const response = await fetch('http://127.0.0.1:8000/auth/jwt/create', {
+            const response = await fetch('http://127.0.0.1:8000/auth/jwt/create/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -51,10 +55,22 @@
             }
 
             const data = await response.json();
-            localStorage.setItem('refreshToken', data.refresh)
-            localStorage.setItem('accessToken', data.access)
-            alert(data)
+            console.log(data)
         })
 
+        btnToken.addEventListener('click', async () => {
+            const response = await fetch('http://127.0.0.1:8000/auth/users/me/', {
+                method: 'GET',
+                credentials: "include"
+            })
+
+            if (!response.ok) {
+                const errorData = await response.json()
+                throw new Error(errorData.detail || 'Unknown error')
+            }
+
+            const data = await response.json()
+            console.log(data)
+        })
     </script>
 </html>

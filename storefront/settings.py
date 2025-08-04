@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'tags',
     'likes',
     'core',
+    'authentication',
     'rest_framework',
     'djoser'
 ]
@@ -145,7 +146,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 REST_FRAMEWORK = {
     'COERCE_DECIMAL_TO_STRING': False,
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'authentication.authentications.CookieJWTAuthentication',
     ),
 }
 
