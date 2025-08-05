@@ -1,0 +1,207 @@
+6:40 | Building Restful APIs 
+- A way to communicate between clien and server.
+- Restful defines the following of these concept
+- Resource, Representation, HTTP methods
+
+9:15 | Resources
+- Resources can be objects and can be accessed through a URL (Uniform Resource Locator)
+- use two level in creating url pattern
+- one of characteristic in resfut api is a easy to follow url
+
+10:45 | Resource Representation
+-  When accessing a url it return a representation, it can be HTML, XML, or JSON
+- any representation can be return, but if your api supports all representation then it is better to make the client identify the format it needs.
+
+12:54 | HTTP Methods
+- Is  a way of identifying the purpose of the endpoint the client access.
+- it can be GET for getting resourse, POST for creating a resoure, PUT for updating a resource, PATCH updating certain part of  the resource, DELETE for deleting resource. 
+- POST needs a body
+- PUT is updating everthing of the object, PATCH for a part of object only. this also need body
+- DELETE does not need a body
+
+ 14:58 | Installing Django REST Framework
+- install djangorestframework
+- add in installed, rest_framework
+
+15:56 | Creating API Views
+- user the usual way of accessing a ur pattern, with declaring a urlpattern then create a correspond httprespone
+- using rest_framework from django, we have to import first
+- from rest_framework.decorators import api_view, this will be added as decorator in the function view,
+- next, from rest_framework.response import Response, and we will use these response method to return a response.
+
+24:04 | Creating Serializers
+- Serializers is for converting a python object into JSON format, which is standard of returning a representation from an api call
+- in order to create serializers:
+- first we were create a serializers.py
+- import the serializers from rest_framework
+- and create a class inheriting the serializers.Serializer model
+- so when adding a attributes, is quite the same when how we creating a attribute for a database model
+ 
+28:08 | Serializing objects
+- 
+
+34:23 | Creating Custom Serializer Field
+- you can create custom field by using the serializer.method field to add method_name arguments and passing the def method within the class which handles the data that will be return
+
+38:53 | Serializing Relationship
+- by defining default, serializers.relatedfield methods you can specify diffent relationship to be converted
+- can be string, primarykey, nested, hyperlink
+
+47:43 | Model Serializer
+- inherit the ModelSerializer class
+- Using Meta class, you can defined the fields, and specify the target model
+- add the necessary fields that will be converted in JSON
+
+52:36 | Deserializing Objects
+- Use the design Serializer class, then add data arguments equal to the request.data
+- the retuurn can be access using the variable.validated_data
+
+55:09 | Data Validation
+- serializer.is_valid(raise_exception=True)
+- override validation in the model class by defining a validated method passing self and data - dictionary type, then return error or the data.
+
+1:00 | Saving Objects
+- use the .save() method,
+- you can override the create() and update() method in the base class to align with your objective
+- but django will automaticall handle the appropriate method
+- 
+
+1:08 | Deleting Objects
+- used delete()
+
+1:17 | Advance API Concepts
+- import APIView from Views
+- add corresponding method on each httpmethod you want to use.  
+
+1:22 | Mixins
+
+1:26 | Generic Views
+- import from generic in rest Framework
+
+1:33 | Customizing Views
+- import mixins and generic Views
+
+1:38 | ViewSets 
+- In creating viewset, you first analyze the repeating pattern within your APIView.
+- You can import the ModelViewset from the rest_framework viewset
+- in inherite the 4 mixins and in that way it works exact the same with other APIView.
+- The difference is, now you're combining the related function or api in related to certain database model.
+
+1:42 | Router
+- import router from rest_framework, can be simple router or default router
+- instantiate then register with prefix and the model viewset
+- access through router.urls
+- add to urlpatterns
+
+1:52 | Building the Reviews API 
+
+1:56 | Nested Routers
+- used the drf-nested-routers package
+- import routers from rest_framework_nested
+- since the routers have already DefaultRouter and SimpleRouter, we will use those for declaring our router
+- instantiate NestedRouter, add necessary arguments, then register a new router as nested with it.
+
+2:06 | Filtering
+- to filter the list from api, we have to modify the url by adding parameters
+- to access parameters in the url, we have to use the self.reques.query_params
+- modify the queryset to return the correct query based on the passed parameter
+
+2:11 | Generic Filtering
+- instead of manually overriding the get_queryset and define your filters, there is a package where you can use to easily filter the queryset based on the url
+- django-filter
+- from django_filter.rest_framework import DjangoFilterBackend
+- inside the viewset, define the filter_backends in array with the import
+- define filterset_fields with array values, or
+- filerset_class by creating a class inheriting the FilterSet from the same location
+- and Meta method, define the target model and fields with a dictionary values, data field as the key, and value as the expression in an array.
+- now you no longer need the get_queryset method_name
+
+2:17 | Searching 
+- we can user searching filter by importing it from rest_framework.filter
+- include it the filter_backends
+- then add search_fields attribute with array values
+
+2:20 | Sorting
+- same with searching import OrderingFilter in the same module, then
+- add ordering_fields with array values
+
+2:21 | Pagination
+- first import pagenumberpagination from rest_framework.Pagination
+- then add pagination_class attribute equal to the pagenumber pagination_class
+- to add pagination globally, we can it in settings.py with DEFAULT_PAGINATION_CLASS, then PAGE_SIZE.
+- we can also create a custom class to specifically add the page_size to the target viewset only
+
+2:27 | Buiding Shopping Cart API
+
+2:39 | Creating a Cart
+
+2:44 | Getting a Cart   
+
+2:53 | Deleting a Cart
+
+2:55 | Creating Cart Items
+
+3:00 | Adding Cart Item
+- 
+
+3:12 | Updating Cart Item
+- http_method_names = ['get', 'post', 'patch', 'delete']
+
+3:14 | Deleting Cart Items
+
+3:15 | Djnango Authentication System
+
+3:21 | Extending the User Model
+
+3:32 | Creating User Profile
+
+3:39 | Groups and Permission
+
+3:42 | Creating Custom Permissions
+
+3:44 | Securing APIs
+
+3:46 | Adding Authentication Endpoints
+- using Djoser as the API Layer and JWT as the auth engine
+
+3:52 | Registering Users
+- as much as possible ke separate endpoints base on their functionalities,
+- in that way, it is manageable and reusable
+- inherit the serializer from djoser, to create a customize fields
+
+4:02 | Building the Profile API
+- build api for customer 
+
+4:07 | Logging In
+
+4:21 | Current User Profile
+- define actions is a viewset
+
+4:28 | Applying permissions
+- using the rest_framework.permissions, you add permissions on the viewset by using the attribute: permission_classes wath value list,
+- you also defin an attribute of permission_classes in the action decorator.
+- In complex permissions, you can used get permission method to return permission based on the request method.
+- make sure to return a list of the permission class instance
+- you can add global permission in settings, using the DEFAULT_PERMISSION_CLASSES
+
+4:33 | Custom Permissions
+- user the Base permission from the rest_framework
+- override the has_permission method to return your specific boolean value
+- you can also user DjangoModelPermission in which it uses the permission built in the admin panel and apply this permission
+- in the api
+
+4:44 | Applying Custom Permissions 
+
+4:49 | Designing Order API
+- CQS - Command Query Separation
+
+5:03 | Creating Order
+- in the base serializer, we override save() to create an Order base on ther user id from the viewset passed through context
+- we can access request() from the serializer, but in the viewset only.
+- so we identify the customer user the request.user.id and create an order based on these customer
+
+5:08 | Creating Order Items
+- we modify the save() and add in that method we creat cart items   
+- filter the cart item query to return only the corresponding cart_id which git from the validated_data of the serializer
+- using a list comphrehension and bulk_create we manage to create items for the order
+
