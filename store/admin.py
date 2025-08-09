@@ -19,15 +19,21 @@ class InventoryFilter(admin.SimpleListFilter):
         if self.value() == '<10':    
             return queryset.filter(inventory__lt=10)
 
-class TagInline(GenericTabularInline):
-    autocomplete_fields = ['tag']
-    model = TaggedItem
+class ProductImageInline(admin.TabularInline):
+    model = models.ProductImage 
+    readonly_fields = ['thumbnail']
+    extra = 1
+
+    def thumbnail(self, instance):
+        if instance.image.name != '':
+            return format_html(f'<img src="{instance.image.url}" class="thumbnail">')
+        return ''
 
 @admin.register(models.Product)
 class ProductAdmin(admin.ModelAdmin):
     autocomplete_fields = ['collection']
     prepopulated_fields = {"slug": ["title"]}
-    inlines = [TagInline]
+    inlines = [ProductImageInline]
 
     actions = ['clear_inventory']
     search_fields = ['title']
@@ -56,6 +62,11 @@ class ProductAdmin(admin.ModelAdmin):
             f'{updated_count} producte were successfully updated.',
             messages.SUCCESS
         )
+
+    class Media:
+        css = {
+            'all': ['store/styles.css']
+        }
 
 @admin.register(models.Collection)
 class CollectionAdmin(admin.ModelAdmin):
@@ -86,7 +97,7 @@ class CustomerAdmin(admin.ModelAdmin):
     def orders_count(self, customer):
         url = reverse('admin:store_order_changelist', query={'customer_id': customer.id})
         return format_html('<a href={}>{}</a>', url, customer.orders_count)
-    
+     
     def get_queryset(self, request):
         return super().get_queryset(request).annotate(
             orders_count=Count('order')
@@ -95,7 +106,7 @@ class CustomerAdmin(admin.ModelAdmin):
 class OrderItemInline(admin.TabularInline):
     autocomplete_fields = ['product']
     model = models.OrderItem
-    min_num = 1
+    min_num = 1 
     max_num = 3
     extra = 0
 
@@ -105,3 +116,4 @@ class OrderAdmin(admin.ModelAdmin):
     autocomplete_fields = ['customer']
     list_display = ['id','placed_at','payment_status','customer']
     list_per_page = 10
+
