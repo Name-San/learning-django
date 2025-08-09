@@ -2,7 +2,7 @@ from decimal import Decimal
 from django.db import transaction
 from rest_framework import serializers
 from .signals import order_created
-from .models import Cart, CartItem, Customer, Order, OrderItem, Product, Collection, Review
+from .models import Cart, CartItem, Customer, Order, OrderItem, Product, Collection, ProductImage, Review
 
 class ReviewSerializer(serializers.ModelSerializer):
     class Meta:
@@ -18,17 +18,27 @@ class CollectionSerializer(serializers.ModelSerializer):
         fields = ['id', 'title', 'products_count']
 
     products_count = serializers.IntegerField(read_only=True)
-        
+
+class ProductImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProductImage
+        fields = ['id', 'image']
+
+    def create(self, validated_data):
+        return ProductImage.objects.create(product_id=self.context['product_id'], **validated_data)
+
 class ProductSerializer(serializers.ModelSerializer):
+    images = ProductImageSerializer(many=True, read_only=True)
+
     class Meta:
         model = Product
-        fields = ['id', 'title', 'slug', 'description', 'unit_price', 'price_with_tax', 'inventory', 'collection', 'last_update']    
+        fields = ['id', 'title', 'slug', 'description', 'unit_price', 'price_with_tax', 'inventory', 'collection', 'last_update', 'images']    
 
     price_with_tax = serializers.SerializerMethodField(method_name='calculate_tax', read_only=True)
 
     def calculate_tax(self, product: Product):
         return product.unit_price * Decimal(1.1)
-    
+
 class ProductCartItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
@@ -92,7 +102,6 @@ class CustomerSerializer(serializers.ModelSerializer):
         model = Customer
         fields = ['id', 'user_id', 'phone', 'birth_date', 'membership']
 
-
 class OrderItemSerializer(serializers.ModelSerializer):
     product = ProductCartItemSerializer()
 
@@ -147,3 +156,4 @@ class UpdateOrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
         fields = ['payment_status']
+

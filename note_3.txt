@@ -3,3 +3,12 @@
 7:15 | Handling uploaded files 
 
 10:29 | Adding Images to Products
+
+13:30 | Building an API to Upload Images
+
+19:45 | Returning Images From API
+
+22:32 | Validating Upload Files
+- when using FileField, you can add validators FileExtensionValidator() with agruments "allowed_extensions = ['pdf']"
+
+26:36 | Setting Up the Client App
