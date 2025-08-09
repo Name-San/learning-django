@@ -12,3 +12,7 @@
 - when using FileField, you can add validators FileExtensionValidator() with agruments "allowed_extensions = ['pdf']"
 
 26:36 | Setting Up the Client App
+
+28:22 | Enabling CORS
+
+33:57 | Managing Images in the Admin
