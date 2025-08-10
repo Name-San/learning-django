@@ -173,3 +173,10 @@ DJOSER = {
 }
 
 AUTH_USER_MODEL = 'core.User'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'localhost'
+EMAIL_HOST_USER = ''
+EMAIL_PASSWORD = ''
+EMAIL_PORT = 2525
+DEFUALT_FROM_EMAIL = 'from@ecommerce.com'

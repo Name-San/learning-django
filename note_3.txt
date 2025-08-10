@@ -16,3 +16,7 @@
 28:22 | Enabling CORS
 
 33:57 | Managing Images in the Admin
+
+43: 29 | SMTP
+
+46:04 | Configuring Email Backend
