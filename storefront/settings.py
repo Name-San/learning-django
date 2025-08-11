@@ -180,3 +180,7 @@ EMAIL_HOST_USER = ''
 EMAIL_PASSWORD = ''
 EMAIL_PORT = 2525
 DEFUALT_FROM_EMAIL = 'from@ecommerce.com'
+
+ADMINS = [
+    ('Eman', 'admin@ecommerce.com')
+]
