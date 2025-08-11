@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.db.models import Q, F, Count, Max, Min, Avg, Value, Func
 from django.db.models.functions import Concat
 from django.contrib.contenttypes.models import ContentType
-from django.core.mail import send_mail, mail_admins, BadHeaderError
+from django.core.mail import send_mail, mail_admins, BadHeaderError, EmailMessage
 from store.models import Product, OrderItem, Order, Customer, Collection
 from tags.models import TaggedItem
 
@@ -30,7 +30,10 @@ def say_hello(request):
     #     }
 
     try:
-        mail_admins('Sample Subject', 'This is a sample messaage', html_message='Click this link to redirect in <a href="google.com">google</a>')
+        # mail_admins('Sample Subject', 'This is a sample messaage', html_message='Click this link to redirect in <a href="google.com">google</a>')
+        message = EmailMessage('subject', 'message', 'info@ecommerce.com', ['john@ecommerce.com'])
+        message.attach_file('playground/static/images/django.png')
+        message.send()
     except BadHeaderError:
         pass
     return render(request, 'hello.html')
