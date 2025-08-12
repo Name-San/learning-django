@@ -33,4 +33,5 @@
 
 1:14:38 | Creating and Executing Tasks
 
-
+1:20:18 | Scheduling Periodic Tasks
+- can add crontab using celery.schedule
