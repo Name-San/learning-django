@@ -7,6 +7,7 @@ from django.core.mail import send_mail, mail_admins, BadHeaderError, EmailMessag
 from store.models import Product, OrderItem, Order, Customer, Collection
 from tags.models import TaggedItem
 from templated_mail.mail import BaseEmailMessage
+from .tasks import notify_customers
 
 # Create your views here.
 def say_hello(request):
@@ -30,17 +31,20 @@ def say_hello(request):
 
     #     }
 
-    try:
-        # mail_admins('Sample Subject', 'This is a sample messaage', html_message='Click this link to redirect in <a href="google.com">google</a>')
-        # message = EmailMessage('subject', 'message', 'info@ecommerce.com', ['john@ecommerce.com'])
-        # message.attach_file('playground/static/images/django.png')
-        # message.send()
-        message = BaseEmailMessage(
-            template_name='emails/hello.html',
-            context={'name': 'Eman'}
-        )
-        message.attach_file('playground/static/images/django.png')
-        message.send(['eman@ecommerce.com'])
-    except BadHeaderError:
-        pass
+    # try:
+    #     # mail_admins('Sample Subject', 'This is a sample messaage', html_message='Click this link to redirect in <a href="google.com">google</a>')
+    #     # message = EmailMessage('subject', 'message', 'info@ecommerce.com', ['john@ecommerce.com'])
+    #     # message.attach_file('playground/static/images/django.png')
+    #     # message.send()
+    #     message = BaseEmailMessage(
+    #         template_name='emails/hello.html',
+    #         context={'name': 'Eman'}
+    #     )
+    #     message.attach_file('playground/static/images/django.png')
+    #     message.send(['eman@ecommerce.com'])
+    # except BadHeaderError:
+    #     pass
+
+
+    notify_customers.delay('sample message')
     return render(request, 'hello.html')
