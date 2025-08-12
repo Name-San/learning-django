@@ -26,3 +26,9 @@
 53:10 | Attaching Files
 
 55:16 | Sending Templated Emails
+
+1:00:00 | Introduction to Celery
+
+1:02:31 | Message Brokers
+
+

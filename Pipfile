@@ -6,7 +6,6 @@ name = "pypi"
 [packages]
 django = "*"
 django-debug-toolbar = "*"
-psycopg2 = "*"
 djangorestframework = "*"
 drf-nested-routers = "*"
 django-filter = "*"
@@ -15,6 +14,9 @@ djangorestframework-simplejwt = "*"
 pillow = "*"
 django-cors-headers = "*"
 django-templated-mail = "*"
+redis = "*"
+psycopg2-binary = "*"
+celery = "*"
 
 [dev-packages]
 

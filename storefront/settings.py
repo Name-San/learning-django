@@ -104,7 +104,7 @@ DATABASES = {
         'HOST': 'localhost',
         'PORT': '5432',
         'USER': 'postgres',
-        'PASSWORD': 'postgres'
+        'PASSWORD': 'admin123'
     }
 }
 
@@ -184,3 +184,5 @@ DEFAULT_FROM_EMAIL = 'from@ecommerce.com'
 ADMINS = [
     ('Eman', 'admin@ecommerce.com')
 ]
+
+CELERY_BROKER_URL = 'redis://localhost:6379/1'
