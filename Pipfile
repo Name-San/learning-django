@@ -17,6 +17,7 @@ django-templated-mail = "*"
 redis = "*"
 psycopg2-binary = "*"
 celery = "*"
+flower = "*"
 
 [dev-packages]
 
