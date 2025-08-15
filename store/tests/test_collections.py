@@ -29,7 +29,7 @@ class TestCollection:
     def test_if_collection_is_created_returns_200(self, authenticate, create_collection):
         authenticate(True)
 
-        response = create_collection({'title': 'a'})
+        response = create_collection({'title': 'a'} )
 
         assert response.status_code == status.HTTP_201_CREATED
         assert response.data['id'] > 0
