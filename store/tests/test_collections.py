@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from rest_framework.test import APIClient
 from rest_framework import status
-from store.models import Collection
+from store.models import Collection, Product
 from model_bakery import baker
 import pytest
 
@@ -39,12 +39,33 @@ class TestCollection:
 class TestRetrieveCollection:
     def test_if_collection_exist_returns_200(self, api_client):
         collection = baker.make(Collection)
-        
         response = api_client.get(f'/store/collections/{collection.id}/')
-
         assert response.status_code == status.HTTP_200_OK
         assert response.data == {
             'id': collection.id,
             'title': collection.title,
             'products_count': 0
         }
+
+    def test_if_collection_updated_returns_200(self, api_client, authenticate):
+        collection = baker.make(Collection)
+        authenticate(True)
+        response = api_client.put(f'/store/collections/{collection.id}/', {'title': 'Arts'})
+        assert response.status_code == status.HTTP_200_OK
+        assert response.data['title'] == 'Arts'
+
+    def test_deleting_collection_contain_product_returns_405(self, api_client, authenticate):
+        product = baker.make(Product)
+        authenticate(True)
+
+        response = api_client.delete(f'/store/collections/{product.collection.id}/')
+        
+        assert response.status_code == status.HTTP_405_METHOD_NOT_ALLOWED
+    
+    def test_deleting_collection_returns_200(self, api_client, authenticate):
+        collection = baker.make(Collection)
+        authenticate(True)
+
+        response = api_client.delete(f'/store/collections/{collection.id}/')
+        
+        assert response.status_code == status.HTTP_204_NO_CONTENT

@@ -60,7 +60,7 @@ class CollectionViewSet(ModelViewSet):
         if Product.objects.filter(collection_id=kwargs.get('pk')).count() > 0:
             return Response(
                 {"error": "Collection contains product and cannot be deleted."},
-                status=status.HTTP_405_METHOD_NOT_ALLOWED
+                status=status.HTTP_405_METHOD_NOT_ALLOWED   
             )
         return super().destroy(request, *args, **kwargs)
 
