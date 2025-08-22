@@ -13,6 +13,8 @@ def create_collection(api_client):
         return api_client.post('/store/collections/', collection)
     return do_collection
 
+
+
 @pytest.mark.django_db
 class TestCollection:
     def test_if_user_is_anonymous_returns_401(self, create_collection):
@@ -69,3 +71,11 @@ class TestRetrieveCollection:
         response = api_client.delete(f'/store/collections/{collection.id}/')
         
         assert response.status_code == status.HTTP_204_NO_CONTENT
+
+@pytest.mark.django_db
+class TestProducts:
+    def test_if_anonymous_returns_401(self, api_client):
+        product = baker.make(Product)
+        response = api_client.post('/store/products/', {'title': "Sample Product", "unit_price": 3, "inventory": 11, 'collection': 2})
+
+        assert response.status_code == status.HTTP_401_UNAUTHORIZED
