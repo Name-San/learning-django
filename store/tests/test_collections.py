@@ -119,6 +119,9 @@ class TestRetrieveProduct:
                                 })
         assert response.status_code == status.HTTP_200_OK
         assert response.data['title'] == 'Gundam'
-        
-
-
+    
+    def test_if_product_deleted_returns_204(self, api_client, authenticate):
+        product = baker.make(Product)
+        authenticate(True)
+        response = api_client.delete(f'/store/products/{product.id}/')
+        assert response.status_code == status.HTTP_204_NO_CONTENT
