@@ -13,6 +13,11 @@ def create_collection(api_client):
         return api_client.post('/store/collections/', collection)
     return do_collection
 
+@pytest.fixture
+def create_product(api_client):
+    def do_create_product(product):
+        return api_client.post('/store/products/', product)
+    return do_create_product
 
 
 @pytest.mark.django_db
@@ -74,8 +79,14 @@ class TestRetrieveCollection:
 
 @pytest.mark.django_db
 class TestProducts:
-    def test_if_anonymous_returns_401(self, api_client):
-        product = baker.make(Product)
-        response = api_client.post('/store/products/', {'title': "Sample Product", "unit_price": 3, "inventory": 11, 'collection': 2})
+    def test_if_anonymous_returns_401(self, authenticate, create_product):
+        response = create_product({'title': "Sample Product", "unit_price": 3, "inventory": 11, 'collection': 2})
 
         assert response.status_code == status.HTTP_401_UNAUTHORIZED
+
+    def test_if_authenticated_user_returns_200(self, authenticate, api_client):
+        authenticate(True)
+
+        response = api_client.get('/store/products/', {'title':'Transformer', 'unit_price': 1})
+
+        assert response.status_code == status.HTTP_200_OK
