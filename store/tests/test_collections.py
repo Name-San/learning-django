@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from rest_framework.test import APIClient
 from rest_framework import status
-from store.models import Collection, Product
+from store.models import Collection, Product, Review
 from model_bakery import baker
 import pytest
 
@@ -125,3 +125,13 @@ class TestRetrieveProduct:
         authenticate(True)
         response = api_client.delete(f'/store/products/{product.id}/')
         assert response.status_code == status.HTTP_204_NO_CONTENT
+
+@pytest.mark.django_db
+class TestReviews:
+    def test_if_can_add_reviews_returns_200(self, api_client):
+        product = baker.make(Product)
+        response = api_client.post(f'/store/products/{product.id}/reviews/', {"name": 'Anna', "description": 'This is Anna.'})
+        assert response.status_code == status.HTTP_201_CREATED
+        assert response.data['name'] == 'Anna'
+
+
