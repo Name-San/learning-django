@@ -134,4 +134,8 @@ class TestReviews:
         assert response.status_code == status.HTTP_201_CREATED
         assert response.data['name'] == 'Anna'
 
-
+    def test_update_review_returns_200(self, api_client):
+        review = baker.make(Review)
+        response = api_client.patch(f'/store/products/{review.product.id}/reviews/{review.id}/', {"name": "Anna"})
+        assert response.status_code == status.HTTP_200_OK
+        assert response.data['name'] == 'Anna'
