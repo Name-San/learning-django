@@ -139,3 +139,8 @@ class TestReviews:
         response = api_client.patch(f'/store/products/{review.product.id}/reviews/{review.id}/', {"name": "Anna"})
         assert response.status_code == status.HTTP_200_OK
         assert response.data['name'] == 'Anna'
+
+    def test_delete_review_returns_204(self, api_client):
+        review = baker.make(Review)
+        response = api_client.delete(f'/store/products/{review.product.id}/reviews/{review.id}/')
+        assert response.status_code == status.HTTP_204_NO_CONTENT
