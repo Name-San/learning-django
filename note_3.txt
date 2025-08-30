@@ -50,3 +50,13 @@
 2:29:04 | Optimizations Technique
 
 2:32:56 | Profiling with Silk
+
+2:40:54 | Verifying Optimizations
+
+2:44:37 | Stress Testings
+
+2:47:25 | Caching
+
+2:54:11 | Installin Redis
+
+2:55:10 | Configure Caching

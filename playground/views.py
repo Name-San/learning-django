@@ -8,9 +8,13 @@ from store.models import Product, OrderItem, Order, Customer, Collection
 from tags.models import TaggedItem
 from templated_mail.mail import BaseEmailMessage
 from .tasks import notify_customers
+import requests
 
 # Create your views here.
 def say_hello(request):
+    requests.get('https://httpbin.org/delay/2')
+    return render(request, 'hello.html')
+
     # products = Product.objects.values('id', 'title', 'collection__title')
     # products = Product.objects.filter(id__in=OrderItem.objects.values('product_id').distinct()).order_by('title')
     #Product.objects.annotate(ordered=Count('orderitem')).order_by('ordered')
@@ -44,7 +48,4 @@ def say_hello(request):
     #     message.send(['eman@ecommerce.com'])
     # except BadHeaderError:
     #     pass
-
-
-    notify_customers.delay('sample message')
-    return render(request, 'hello.html')
+    # notify_customers.delay('sample message')
