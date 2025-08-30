@@ -43,3 +43,10 @@
 
 1:28:26 | Test Behaviours, Not Implementations
 
+2:15:43 | Performance Test 
+
+2:26:10 | Running Performance Test
+
+2:29:04 | Optimizations Technique
+
+2:32:56 | Profiling with Silk
