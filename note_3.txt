@@ -60,3 +60,7 @@
 2:54:11 | Installin Redis
 
 2:55:10 | Configure Caching
+
+2:56:25 | Using Low Level Cache Api
+
+2:59:50 | Caching Views

@@ -5,6 +5,9 @@
         {% else %}
         <h1>Hello!</h1>
         {% endif %}
+        {% if cache %}
+        <p>Cache: {{ cache }}</p>
+        {% endif %}
         {% if orders %}
         <ul>
             {% for order in orders %}
