@@ -5,6 +5,7 @@ from django.db.models.functions import Concat
 from django.contrib.contenttypes.models import ContentType
 from django.core.mail import send_mail, mail_admins, BadHeaderError, EmailMessage
 from django.core.cache import cache
+from django.views.decorators.cache import cache_page
 from store.models import Product, OrderItem, Order, Customer, Collection
 from tags.models import TaggedItem
 from templated_mail.mail import BaseEmailMessage
@@ -12,13 +13,12 @@ from .tasks import notify_customers
 import requests
 
 # Create your views here.
+
+@cache_page(5 * 60)
 def say_hello(request):
-    key = 'httpbin_result'
-    if cache.get(key) is None:
-        response = requests.get('https://httpbin.org/delay/2')
-        data = response.json()
-        cache.set(key, data)
-    return render(request, 'hello.html', {'cache': cache.get(key)})
+    response = requests.get('https://httpbin.org/delay/2')
+    data = response.json()
+    return render(request, 'hello.html', {'cache': data})
 
     # products = Product.objects.values('id', 'title', 'collection__title')
     # products = Product.objects.filter(id__in=OrderItem.objects.values('product_id').distinct()).order_by('title')
