@@ -24,11 +24,11 @@ class SayHello(APIView):
         return render(request, 'hello.html', {'cache': data})
 
 
-@cache_page(5 * 60)
-def say_hello(request):
-    response = requests.get('https://httpbin.org/delay/2')
-    data = response.json()
-    return render(request, 'hello.html', {'cache': data})
+# @cache_page(5 * 60)
+# def say_hello(request):
+#     response = requests.get('https://httpbin.org/delay/2')
+#     data = response.json()
+#     return render(request, 'hello.html', {'cache': data})
 
     # products = Product.objects.values('id', 'title', 'collection__title')
     # products = Product.objects.filter(id__in=OrderItem.objects.values('product_id').distinct()).order_by('title')
