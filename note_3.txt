@@ -76,3 +76,5 @@
 3:17:56 | Serving Static Assets
 
 3:18:57 | Configuring Logging
+
+3:25:23 | Logging

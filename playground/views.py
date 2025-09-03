@@ -12,15 +12,22 @@ from store.models import Product, OrderItem, Order, Customer, Collection
 from tags.models import TaggedItem
 from templated_mail.mail import BaseEmailMessage
 from .tasks import notify_customers
+import logging
 import requests
 
-# Create your views here.
+logger = logging.getLogger(__name__)
 
 class SayHello(APIView):
     @method_decorator(cache_page(5 * 60))
     def get(self, request):
-        response = requests.get('https://httpbin.org/delay/2')
-        data = response.json()
+        try:
+            logger.info('Calling httpbin')
+            response = requests.get('https://httpbin.org/delay/2')
+            logger.info('Receive httpbin response')
+            data = response.json()
+        except requests.ConnectionError:
+            logger.critical('httpbin is offline')
+            
         return render(request, 'hello.html', {'cache': data})
 
 
