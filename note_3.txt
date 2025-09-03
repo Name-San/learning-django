@@ -66,3 +66,6 @@
 2:59:50 | Caching Views
 
 3:04:40 | Verifying Optimizations
+
+3:06:29 | Managing Redis Cache Content
+
