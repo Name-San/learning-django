@@ -1,3 +1,31 @@
 2025-09-03 08:28:56,212 (INFO) - django.utils.autoreload - Watching for file changes with StatReloader
 2025-09-03 08:29:00,952 (INFO) - playground.views - Calling httpbin
 2025-09-03 08:29:09,096 (INFO) - playground.views - Receive httpbin response
+2025-09-03 08:43:58,581 (INFO) - django.utils.autoreload - /home/eman/.local/share/virtualenvs/learning-django-PtLLHtaA/lib/python3.13/site-packages/django/__init__.py changed, reloading.
+2025-09-03 08:49:03,678 (INFO) - django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-03 08:49:10,769 (INFO) - playground.views - Calling httpbin
+2025-09-03 08:49:19,385 (INFO) - playground.views - Receive httpbin response
+2025-09-03 08:50:17,293 (WARNING) - django.request - Unauthorized: /store/collections/
+2025-09-03 08:50:17,319 (WARNING) - django.request - Forbidden: /store/collections/
+2025-09-03 08:50:17,345 (WARNING) - django.request - Bad Request: /store/collections/
+2025-09-03 08:50:17,504 (WARNING) - django.request - Method Not Allowed: /store/collections/4/
+2025-09-03 08:50:17,592 (WARNING) - django.request - Unauthorized: /store/products/
+2025-09-03 08:50:17,620 (WARNING) - django.request - Forbidden: /store/collections/
+2025-09-03 08:50:17,684 (WARNING) - django.request - Bad Request: /store/products/
+2025-09-03 08:50:17,801 (WARNING) - django.request - Bad Request: /store/products/3/
+2025-09-03 08:51:39,296 (WARNING) - django.request - Unauthorized: /store/collections/
+2025-09-03 08:51:39,319 (WARNING) - django.request - Forbidden: /store/collections/
+2025-09-03 08:51:39,346 (WARNING) - django.request - Bad Request: /store/collections/
+2025-09-03 08:51:39,485 (WARNING) - django.request - Method Not Allowed: /store/collections/4/
+2025-09-03 08:51:39,575 (WARNING) - django.request - Unauthorized: /store/products/
+2025-09-03 08:51:39,596 (WARNING) - django.request - Forbidden: /store/collections/
+2025-09-03 08:51:39,655 (WARNING) - django.request - Bad Request: /store/products/
+2025-09-03 08:51:39,754 (WARNING) - django.request - Bad Request: /store/products/3/
+2025-09-03 08:52:33,084 (WARNING) - django.request - Unauthorized: /store/collections/
+2025-09-03 08:52:33,107 (WARNING) - django.request - Forbidden: /store/collections/
+2025-09-03 08:52:33,135 (WARNING) - django.request - Bad Request: /store/collections/
+2025-09-03 08:55:39,273 (INFO) - django.utils.autoreload - /mnt/c/Users/emanj/Desktop/learning-django/storefront/settings/common.py changed, reloading.
+2025-09-03 08:55:40,286 (INFO) - django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-03 08:55:51,027 (WARNING) - django.request - Unauthorized: /store/collections/
+2025-09-03 08:55:51,301 (WARNING) - django.request - Forbidden: /store/collections/
+2025-09-03 08:55:51,561 (WARNING) - django.request - Bad Request: /store/collections/
