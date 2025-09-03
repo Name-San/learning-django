@@ -71,3 +71,8 @@
 
 3:09:07 | Preparing for Production
 
+3:15:10 | Collect Static Assets
+
+3:17:56 | Serving Static Assets
+
+3:18:57 | Configuring Logging
