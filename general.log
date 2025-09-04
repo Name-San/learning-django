@@ -55,3 +55,9 @@
 2025-09-03 09:03:48,809 (INFO) - playground.views - Receive httpbin response
 2025-09-03 09:03:52,312 (INFO) - django.utils.autoreload - /mnt/c/Users/emanj/Desktop/learning-django/playground/views.py changed, reloading.
 2025-09-03 09:03:53,320 (INFO) - django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-04 14:50:05,352 (WARNING) - django.request - Not Found: /favicon.ico
+2025-09-04 14:54:59,276 (INFO) - django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-04 15:10:40,441 (INFO) - django.utils.autoreload - /mnt/c/Users/emanj/Desktop/learning-django/storefront/settings/dev.py changed, reloading.
+2025-09-04 15:10:41,482 (INFO) - django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-04 15:10:55,397 (INFO) - django.utils.autoreload - /mnt/c/Users/emanj/Desktop/learning-django/storefront/settings/dev.py changed, reloading.
+2025-09-04 15:10:56,601 (INFO) - django.utils.autoreload - Watching for file changes with StatReloader
