@@ -78,3 +78,5 @@
 3:18:57 | Configuring Logging
 
 3:25:23 | Logging
+
+3:38:08 | Serving the Application with Gunicorn
