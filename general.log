@@ -29,3 +29,29 @@
 2025-09-03 08:55:51,027 (WARNING) - django.request - Unauthorized: /store/collections/
 2025-09-03 08:55:51,301 (WARNING) - django.request - Forbidden: /store/collections/
 2025-09-03 08:55:51,561 (WARNING) - django.request - Bad Request: /store/collections/
+2025-09-03 08:59:30,123 (INFO) - django.utils.autoreload - /mnt/c/Users/emanj/Desktop/learning-django/storefront/settings/common.py changed, reloading.
+2025-09-03 08:59:31,137 (INFO) - django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-03 09:00:51,131 (INFO) - django.utils.autoreload - /mnt/c/Users/emanj/Desktop/learning-django/playground/views.py changed, reloading.
+2025-09-03 09:00:52,074 (INFO) - django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-03 09:01:02,268 (INFO) - playground.views - Calling httpbin
+2025-09-03 09:01:34,177 (INFO) - django.utils.autoreload - /mnt/c/Users/emanj/Desktop/learning-django/storefront/settings/common.py changed, reloading.
+2025-09-03 09:01:35,319 (INFO) - django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-03 09:01:36,860 (INFO) - playground.views - Calling httpbin
+2025-09-03 09:01:54,917 (INFO) - django.utils.autoreload - /mnt/c/Users/emanj/Desktop/learning-django/storefront/settings/common.py changed, reloading.
+2025-09-03 09:01:55,980 (INFO) - django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-03 09:01:59,149 (INFO) - playground.views - Calling httpbin
+2025-09-03 09:02:35,580 (INFO) - playground.views - Receive httpbin response
+2025-09-03 09:02:36,362 (INFO) - django.utils.autoreload - /mnt/c/Users/emanj/Desktop/learning-django/storefront/settings/common.py changed, reloading.
+2025-09-03 09:02:37,421 (INFO) - django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-03 09:02:52,535 (INFO) - django.utils.autoreload - /mnt/c/Users/emanj/Desktop/learning-django/storefront/settings/common.py changed, reloading.
+2025-09-03 09:02:53,558 (INFO) - django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-03 09:03:05,839 (INFO) - django.utils.autoreload - /mnt/c/Users/emanj/Desktop/learning-django/playground/views.py changed, reloading.
+2025-09-03 09:03:06,998 (INFO) - django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-03 09:03:12,709 (INFO) - django.utils.autoreload - /mnt/c/Users/emanj/Desktop/learning-django/playground/views.py changed, reloading.
+2025-09-03 09:03:13,849 (INFO) - django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-03 09:03:32,031 (INFO) - django.utils.autoreload - /mnt/c/Users/emanj/Desktop/learning-django/playground/views.py changed, reloading.
+2025-09-03 09:03:33,124 (INFO) - django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-03 09:03:37,292 (INFO) - playground.views - Calling httpbin
+2025-09-03 09:03:48,809 (INFO) - playground.views - Receive httpbin response
+2025-09-03 09:03:52,312 (INFO) - django.utils.autoreload - /mnt/c/Users/emanj/Desktop/learning-django/playground/views.py changed, reloading.
+2025-09-03 09:03:53,320 (INFO) - django.utils.autoreload - Watching for file changes with StatReloader

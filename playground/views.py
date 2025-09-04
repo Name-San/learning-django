@@ -15,6 +15,7 @@ from .tasks import notify_customers
 import logging
 import requests
 
+
 logger = logging.getLogger(__name__)
 
 class SayHello(APIView):
