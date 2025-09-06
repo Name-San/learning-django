@@ -80,3 +80,8 @@
 3:25:23 | Logging
 
 3:38:08 | Serving the Application with Gunicorn
+
+3:40:20 | Deployment
+
+3:45:06 | Creating App in heruko
+
