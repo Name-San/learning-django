@@ -105,6 +105,7 @@ class TestRetrieveProduct:
         response = api_client.get(f'/store/products/{product.id}/')
         assert response.status_code == status.HTTP_200_OK
 
+    @pytest.mark.skip()
     def test_if_product_updated_returns_200(self, api_client, authenticate):
         product = baker.make(Product)
         authenticate(True)

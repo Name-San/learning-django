@@ -21,6 +21,7 @@ logger = logging.getLogger(__name__)
 class SayHello(APIView):
     @method_decorator(cache_page(5 * 60))
     def get(self, request):
+        data = None
         try:
             logger.info('Calling httpbin')
             response = requests.get('https://httpbin.org/delay/2')

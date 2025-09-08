@@ -61,3 +61,85 @@
 2025-09-04 15:10:41,482 (INFO) - django.utils.autoreload - Watching for file changes with StatReloader
 2025-09-04 15:10:55,397 (INFO) - django.utils.autoreload - /mnt/c/Users/emanj/Desktop/learning-django/storefront/settings/dev.py changed, reloading.
 2025-09-04 15:10:56,601 (INFO) - django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-08 01:26:26,360 (WARNING) - django.request - Not Found: /favicon.ico
+2025-09-08 06:31:21,436 (INFO) - django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-08 06:46:04,995 (INFO) - django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-08 06:58:54,940 (INFO) - django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-08 06:59:00,770 (WARNING) - django.request - Unauthorized: /store/collections/
+2025-09-08 06:59:01,040 (WARNING) - django.request - Forbidden: /store/collections/
+2025-09-08 06:59:01,302 (WARNING) - django.request - Bad Request: /store/collections/
+2025-09-08 06:59:02,486 (WARNING) - django.request - Method Not Allowed: /store/collections/4/
+2025-09-08 06:59:03,066 (WARNING) - django.request - Unauthorized: /store/products/
+2025-09-08 06:59:03,321 (WARNING) - django.request - Forbidden: /store/collections/
+2025-09-08 06:59:03,858 (WARNING) - django.request - Bad Request: /store/products/
+2025-09-08 06:59:04,534 (WARNING) - django.request - Bad Request: /store/products/3/
+2025-09-08 06:59:10,007 (WARNING) - django.request - Not Found: /favicon.ico
+2025-09-08 07:05:07,721 (INFO) - playground.views - Calling httpbin
+2025-09-08 07:05:07,735 (CRITICAL) - playground.views - httpbin is offline
+2025-09-08 07:05:07,790 (ERROR) - django.request - Internal Server Error: /playground/hello/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.13/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.13/site-packages/django/views/generic/base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/site-packages/rest_framework/views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.13/site-packages/rest_framework/views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/usr/local/lib/python3.13/site-packages/rest_framework/views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.13/site-packages/rest_framework/views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/usr/local/lib/python3.13/site-packages/django/utils/decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+  File "/usr/local/lib/python3.13/site-packages/django/utils/decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/app/playground/views.py", line 32, in get
+    return render(request, 'hello.html', {'cache': data})
+                                                   ^^^^
+UnboundLocalError: cannot access local variable 'data' where it is not associated with a value
+2025-09-08 07:05:17,015 (WARNING) - django.request - Not Found: /playground
+2025-09-08 07:05:25,005 (INFO) - playground.views - Calling httpbin
+2025-09-08 07:05:25,014 (CRITICAL) - playground.views - httpbin is offline
+2025-09-08 07:05:25,051 (ERROR) - django.request - Internal Server Error: /playground/hello/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.13/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.13/site-packages/django/views/generic/base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/site-packages/rest_framework/views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.13/site-packages/rest_framework/views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/usr/local/lib/python3.13/site-packages/rest_framework/views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.13/site-packages/rest_framework/views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/usr/local/lib/python3.13/site-packages/django/utils/decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+  File "/usr/local/lib/python3.13/site-packages/django/utils/decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/app/playground/views.py", line 32, in get
+    return render(request, 'hello.html', {'cache': data})
+                                                   ^^^^
+UnboundLocalError: cannot access local variable 'data' where it is not associated with a value
+2025-09-08 07:06:16,794 (INFO) - playground.views - Calling httpbin
+2025-09-08 07:06:21,143 (INFO) - playground.views - Receive httpbin response
+2025-09-08 07:07:00,561 (INFO) - django.utils.autoreload - /app/playground/views.py changed, reloading.
+2025-09-08 07:07:01,626 (INFO) - django.utils.autoreload - Watching for file changes with StatReloader
